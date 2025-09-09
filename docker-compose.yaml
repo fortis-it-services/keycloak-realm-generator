@@ -1,0 +1,27 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3
+    environment:
+      KC_DB: postgres
+      KC_DB_USERNAME: ${KC_DB_USERNAME}
+      KC_DB_PASSWORD: ${KC_DB_PASSWORD}
+      KC_DB_URL: jdbc:postgresql://keycloak-database:5432/${KC_DB_NAME}
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_BOOTSTRAP_ADMIN_USERNAME}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_BOOTSTRAP_ADMIN_PASSWORD}
+      KC_HEALTH_ENABLED: true
+    command:
+      - start-dev
+    ports:
+      - ${KC_HTTP_PORT}:8080
+      - ${KC_MANAGEMENT_PORT}:9000
+    volumes:
+      - ./volumes/keycloak/export:/export
+    depends_on:
+      - keycloak-database
+
+  keycloak-database:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${KC_DB_NAME}
+      POSTGRES_USER: ${KC_DB_USERNAME}
+      POSTGRES_PASSWORD: ${KC_DB_PASSWORD}

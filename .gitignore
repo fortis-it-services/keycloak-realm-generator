@@ -1,0 +1,7 @@
+.idea
+*.iml
+tf/keycloak/.terraform
+tf/keycloak/.terraform.lock.hcl
+tf/keycloak/terraform.tfstate
+tf/keycloak/terraform.tfstate.backup
+volumes
