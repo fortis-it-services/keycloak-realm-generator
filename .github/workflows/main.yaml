@@ -15,5 +15,8 @@ jobs:
       - name: Setup OpenTofu
         uses: opentofu/setup-opentofu@v1
 
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v5
+
       - name: Lint
         run: ./ci/lint.sh
