@@ -1,5 +1,5 @@
 resource "keycloak_realm" "this" {
-  realm = "awesome-realm"
+  realm        = "awesome-realm"
   display_name = "Super Awesome Realm"
 }
 
