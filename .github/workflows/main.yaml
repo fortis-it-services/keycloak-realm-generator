@@ -1,0 +1,16 @@
+---
+name: Main Workflow
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  main:
+    name: Main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v5
+
+      - name: Lint
+        run: ./ci/lint.sh
